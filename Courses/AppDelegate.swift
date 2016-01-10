@@ -5,8 +5,10 @@
 //  Created by Nate Armstrong on 1/6/16.
 //  Copyright © 2016 Nate Armstrong. All rights reserved.
 //
+// Access Token: 2~hojIVX1gufSeG1AqOrEkneJR7QQutIvCVObi2Zbc7WfQlcqeBWp8ug3PYOyuBDbK
 
 import UIKit
+import Moya
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        if let root = window?.rootViewController as? ViewController {
+            let provider = ReactiveCocoaMoyaProvider<Canvas>()
+            root.viewModel = ViewModel(store: CourseStore(provider: provider))
+        }
         return true
     }
 
